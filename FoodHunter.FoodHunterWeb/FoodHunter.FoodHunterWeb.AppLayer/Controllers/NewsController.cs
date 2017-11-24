@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.DynamicData;
 using System.Web.Mvc;
 using AutoMapper;
 using FoodHunter.FoodHunterWeb.AppLayer.Helpers.Annotations;
@@ -105,20 +104,7 @@ namespace FoodHunter.Web.AppLayer.Controllers
 
             return View(newsEdit);
         }
-
-        [HttpPost]
-        public ActionResult Edit(NewsEditViewModel newsEditViewModel, int id)
-        {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<NewsEditViewModel, News>());
-            var mapper = config.CreateMapper();
-
-            News news = mapper.Map<News>(newsEditViewModel);
-            news.NewsId = id;
-            news.UserId = Convert.ToInt32(Session["UserId"]);
-            news.RestaurantId = _newsContext.Get(id).RestaurantId;
-            _newsContext.Update(news);
-            return RedirectToAction("Index", "News");
-        }
+        
 
         [HttpPost]
         public ActionResult Edit(NewsEditViewModel newsEditViewModel,int id)
