@@ -84,22 +84,9 @@ namespace FoodHunter.Web.AppLayer.Controllers
 
             News news = mapper.Map<News>(newsCreateViewModel);
             news.UserId = Convert.ToInt32(Session["UserId"]);
+            news.PostedOn = DateTime.Now;
             _newsContext.Insert(news);
             return RedirectToAction("Index","News");
-        }
-
-        [HttpPost]
-        public ActionResult Edit(NewsEditViewModel newsEditViewModel,int id)
-        {
-            var config = new MapperConfiguration(cfg=>cfg.CreateMap<NewsEditViewModel,News>());
-            var mapper = config.CreateMapper();
-
-            News news = mapper.Map<News>(newsEditViewModel);
-            news.NewsId = id;
-            news.UserId = Convert.ToInt32(Session["UserId"]);
-            news.RestaurantId = _newsContext.Get(id).RestaurantId;
-            _newsContext.Update(news);
-            return RedirectToAction("Index", "News");
         }
 
         [HttpGet]
@@ -119,10 +106,25 @@ namespace FoodHunter.Web.AppLayer.Controllers
         }
 
 
+        [HttpPost]
+        public ActionResult Edit(NewsEditViewModel newsEditViewModel,int id)
+        {
+            var config = new MapperConfiguration(cfg=>cfg.CreateMap<NewsEditViewModel,News>());
+            var mapper = config.CreateMapper();
+
+            News news = mapper.Map<News>(newsEditViewModel);
+            news.NewsId = id;
+            news.UserId = Convert.ToInt32(Session["UserId"]);
+            news.RestaurantId = _newsContext.Get(id).RestaurantId;
+            news.PostedOn = _newsContext.Get(id).PostedOn;
+            _newsContext.Update(news);
+            return RedirectToAction("Index", "News");
+        }
+        
         [HttpGet]
         public ActionResult Details(int id)
         {
-            News news =_newsContext.Get(id);
+            News news = _newsContext.Get(id);
 
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Food, NewsDetailsViewModel>());
             var mapper = config.CreateMapper();

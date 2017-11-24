@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodHunter.Web.DataLayer
@@ -14,6 +15,7 @@ namespace FoodHunter.Web.DataLayer
         public string NewsPicture { get; set; }
         public string Title { get; set; }
         public string NewsBody { get; set; }
+        public DateTime PostedOn { get; set; }
         public int UserId { get; set; }
         [ForeignKey("UserId")]
         public RestaurantAdmin RestaurantAdmin { get; set; }
