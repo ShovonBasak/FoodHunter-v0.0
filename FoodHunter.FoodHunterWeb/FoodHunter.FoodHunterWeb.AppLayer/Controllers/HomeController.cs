@@ -15,13 +15,14 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
     {
         private readonly IFoodRepository _foodRepository;
         private readonly IRestaurantRepository _restaurantRepository;
-        private INewsRepository _newsContext;
+        private readonly INewsRepository _newsContext;
         private readonly Facade _facade;
 
         public HomeController()
         {
             _foodRepository = Factory.GetFoodRepository();
             _restaurantRepository = Factory.GetRestaurantRepository();
+            _newsContext = Factory.GetNewsRepository();
             _facade = new Facade();
         }
         // GET: Home

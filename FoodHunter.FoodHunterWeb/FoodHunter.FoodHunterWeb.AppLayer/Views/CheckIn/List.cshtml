@@ -1,0 +1,33 @@
+﻿@model IEnumerable<FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List.CheckInListViewModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>List</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+    
+    @foreach (var item in Model) {
+        <tr>
+             <td>
+                 @Html.ActionLink(Html.DisplayFor(modelItem => item.UserName).ToString(), "Details","Foodie") checked in at @Html.ActionLink(Html.DisplayFor(modelItem => item.RestaurantName).ToString(), "Details", "Foodie") at <b>@Html.DisplayFor(modelItem => item.CheckInTime)</b>
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id=item.CheckInId })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
