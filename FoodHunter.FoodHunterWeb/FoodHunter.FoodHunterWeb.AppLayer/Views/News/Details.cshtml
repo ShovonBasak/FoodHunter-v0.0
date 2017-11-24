@@ -3,7 +3,7 @@
 
 @{
     ViewBag.Title = "News Details";
-    if (Session != null && Session["UserType"].ToString() == UserType.RestaurantAdmin.ToString())
+    if (Session["UserId"] != null && Session["UserType"].ToString() == UserType.RestaurantAdmin.ToString())
     {
         Layout = "~/Views/Shared/_Layout_Restaurant_Admin.cshtml";
     }

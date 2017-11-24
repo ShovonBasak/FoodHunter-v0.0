@@ -1,4 +1,5 @@
-﻿@model IEnumerable<FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List.FoodListViewModel>
+﻿@using FoodHunter.Web.DataLayer
+@model IEnumerable<FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List.FoodListViewModel>
 
 @{
     Layout = null;
@@ -12,10 +13,12 @@
     <title>List</title>
 </head>
 <body>
-
-<p>
-    @Html.ActionLink("Create New", "Create", new {@id = ViewBag.RestaurantId}, null)
-</p>
+    @if (Session["UserId"] != null && Session["UserType"].ToString() == UserType.RestaurantAdmin.ToString())
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create", new {@id = ViewBag.RestaurantId}, null)
+        </p>
+    }
 <table class="table">
     <tr>
         <th>
