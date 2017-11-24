@@ -16,7 +16,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
     {
         private readonly IFoodRepository _foodRepository;
         private readonly IRestaurantRepository _restaurantRepository;
-        private INewsRepository _newsContext;
+        private readonly INewsRepository _newsContext;
         private readonly Facade _facade;
 
         public HomeController()

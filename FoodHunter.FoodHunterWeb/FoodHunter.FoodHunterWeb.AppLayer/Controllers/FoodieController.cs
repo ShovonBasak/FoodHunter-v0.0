@@ -47,28 +47,6 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             
         }
 
-        public ActionResult ProfileView()
-        {
-            _profile = _repository.Get(Convert.ToInt32(Session["UserId"]));
-
-
-            //Create Map
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Foodie, FoodieDetailsViewModel>());
-            var mapper = config.CreateMapper();
-
-            //Copy values
-            FoodieDetailsViewModel profileDetails = mapper.Map<FoodieDetailsViewModel>(_profile);
-
-            if (_profile != null)
-            {
-                profileDetails.Email = Session["Email"].ToString();
-                profileDetails.CheckIns = _profile.CheckIns;
-            }
-
-            return View(profileDetails);
-
-        }
-
         [HttpGet]
         public ActionResult Details(int id)
         {
@@ -88,8 +66,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 
             return View(profileDetails);
         }
-
-
+        
         [HttpGet]
         public ActionResult Edit()
         {

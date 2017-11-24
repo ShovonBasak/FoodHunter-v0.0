@@ -6,7 +6,7 @@ namespace FoodHunter.Web.DataLayer
 {
     public class CheckIn
     {
-        internal CheckIn()
+        public CheckIn()
         {
         }
 
