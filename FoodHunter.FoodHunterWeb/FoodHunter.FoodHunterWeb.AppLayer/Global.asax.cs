@@ -28,7 +28,7 @@ namespace FoodHunter.Web.AppLayer
             Session["UserId"] = null;
             Session["UserName"] = null;
             Session["Email"] = null;
-            Session["UserType"] = "";
+            Session["UserType"] = null;
         }
     }
 }
