@@ -39,8 +39,8 @@
                     <li class="active">@Html.ActionLink("Home", "Index", "Home") <span class="sr-only">(current)</span></li>
                     <li>@Html.ActionLink("Top Restaurant", "TopRestaurantList", "Home")</li>
                     <li>@Html.ActionLink("Top Foods", "FoodList", "Home")</li>
-                    <li>@Html.ActionLink("Tranding", "Details", "Food")</li>
-                    <li>@Html.ActionLink("New Arrival", "Details", "Food")</li>
+                    <li>@Html.ActionLink("Tranding", "FoodList", "Home")</li>
+                    <li>@Html.ActionLink("New Arrival", "NewArrivalList", "Home")</li>
                     @*<li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -68,7 +68,7 @@
                         }
                         else
                         {
-                            @Html.ActionLink(""+ Session["UserName"] +"", "Index", "Foodie")  @Html.ActionLink("SignOut", "Logout", "Login")
+                            @Html.ActionLink(""+ Session["UserName"] +"", "Index","Foodie")  @Html.ActionLink("SignOut", "Logout", "Login")
                         }
                     </li>
                 </ul>
@@ -97,7 +97,7 @@
         </div>
     </div>
 
-    <footer class="container-fluid text-center bg-lightgray">
+    <footer class="container-fluid text-right bg-lightgray">
 
         <div class="copyrights" style="margin-top:25px;">
             <p>

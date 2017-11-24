@@ -1,14 +1,13 @@
 ﻿@model FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details.FoodieDetailsViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Profile Details";
     Layout = "~/Views/Shared/_Layout_Foodie.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Profile Details</h2>
 
 <div>
-    <h4>ProfileDetailsViewModel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -36,14 +35,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ProfilePicture)
-        </dt>
-
-        <dd>
-            <img src="@Html.DisplayFor(model => model.ProfilePicture)" alt="Profile Picture" style="height: 200px; width: 200px;"/>
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Address)
         </dt>
 
@@ -59,9 +50,16 @@
             @Html.DisplayFor(model => model.Email)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfilePicture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfilePicture)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ })
 </p>

@@ -1,12 +1,11 @@
 ﻿@model FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details.NewsDetailsViewModel
 
 @{
-    ViewBag.Title = "News Details";
+    ViewBag.Title = "Delete News";
     Layout = "~/Views/Shared/_Layout_Restaurant_Admin.cshtml";
 }
 
-<h2>News Details</h2>
-
+<h3>Are you sure you want to delete this?</h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
@@ -35,7 +34,13 @@
         </dd>
 
     </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back", "Index")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Back","Index","News")
-</p>

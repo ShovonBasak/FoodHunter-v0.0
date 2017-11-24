@@ -1,0 +1,55 @@
+﻿@model IEnumerable<FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List.FoodListViewModel>
+
+@{
+    ViewBag.Title = "Food List";
+    Layout = "~/Views/Shared/_Layout_Restaurant_Admin.cshtml";
+}
+
+<h2>Food List</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodPicture)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rating)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FoodId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FoodName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FoodPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FoodPicture)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rating)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

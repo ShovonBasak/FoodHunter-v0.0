@@ -151,6 +151,7 @@
     <Compile Include="ViewModels\Create\NewsCreateViewModel.cs" />
     <Compile Include="ViewModels\Create\RestaurantCreateViewModel.cs" />
     <Compile Include="ViewModels\Create\ReviewCreateViewModel.cs" />
+    <Compile Include="ViewModels\Delete\NewsDeleteViewModel.cs" />
     <Compile Include="ViewModels\Details\FoodDetailsViewModel.cs" />
     <Compile Include="ViewModels\Details\FoodieDetailsViewModel.cs" />
     <Compile Include="ViewModels\Details\NewsDetailsViewModel.cs" />
@@ -208,6 +209,11 @@
     <Content Include="Views\News\Details.cshtml" />
     <Content Include="Views\RestaurantAdmin\ProfileView.cshtml" />
     <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\News\Delete.cshtml" />
+    <Content Include="Views\Shared\_Layout_Foodie.cshtml" />
+    <Content Include="Views\Home\NewArrivalList.cshtml" />
+    <Content Include="Views\Foodie\ProfileView.cshtml" />
+    <Content Include="Views\Food\ShowList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -217,7 +223,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewModels\Delete\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FoodHunter.FoodHunterWeb.DataLayer\FoodHunter.Web.DataLayer.csproj">

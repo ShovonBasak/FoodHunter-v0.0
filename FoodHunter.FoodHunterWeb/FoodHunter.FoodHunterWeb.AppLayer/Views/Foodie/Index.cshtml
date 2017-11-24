@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Profile";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout_Foodie.cshtml";
 }
 
 <!DOCTYPE html>
@@ -12,59 +12,7 @@
     <meta name="viewport" content="width=device-width" />
 </head>
 <body>
-    <div>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.FirstName)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.LastName)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.LastName)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Email)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.PhoneNo)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.PhoneNo)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.ProfilePicture)
-            </dt>
-    
-            <dd>
-                <img src="@Html.DisplayFor(model => model.ProfilePicture)" alt="Profile Picture" style="height: 200px; width: 200px;" />
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Address)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Address)
-            </dd>
-    
-        </dl>
-
+    <h2>CheckIns</h2>
         @if (Model?.CheckIns != null)
         {
             foreach (var item in Model.CheckIns)
@@ -85,9 +33,5 @@
                 </table>
             }
         }
-    </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    </p>
 </body>
 </html>

@@ -1,15 +1,12 @@
 ﻿@model IEnumerable<FoodHunter.Web.AppLayer.ViewModels.List.NewsListViewModel>
 
 @{
-    ViewBag.Title = "News";
-    Layout = "~/Views/Shared/_Layout_Restaurant_Admin.cshtml";
+    ViewBag.Title = "New Arrival";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>News</h2>
+<h2>New Arrival</h2>
 
-<p>
-    @Html.ActionLink("Create News", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -20,6 +17,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.NewsBody)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NewsId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RestaurantName)
@@ -39,12 +39,10 @@
             @Html.DisplayFor(modelItem => item.NewsBody)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.RestaurantName)
+            @Html.DisplayFor(modelItem => item.NewsId)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.NewsId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.NewsId }) |
-            @Html.ActionLink("Delete", "Delete", new {  id=item.NewsId  })
+            @Html.DisplayFor(modelItem => item.RestaurantName)
         </td>
     </tr>
 }

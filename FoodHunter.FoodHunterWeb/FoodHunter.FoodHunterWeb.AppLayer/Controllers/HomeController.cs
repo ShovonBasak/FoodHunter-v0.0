@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using FoodHunter.FoodHunterWeb.AppLayer.Helpers;
 using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List;
+using FoodHunter.Web.AppLayer.ViewModels.List;
 using FoodHunter.Web.DataLayer;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
@@ -14,6 +15,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
     {
         private readonly IFoodRepository _foodRepository;
         private readonly IRestaurantRepository _restaurantRepository;
+        private INewsRepository _newsContext;
         private readonly Facade _facade;
 
         public HomeController()
@@ -80,7 +82,27 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         [HttpGet]
         public ActionResult NewArrivalList()
         {
-            return View();
+            //Create Map
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<News, NewsListViewModel>());
+            var mapper = config.CreateMapper();
+            //Copy values
+            List<NewsListViewModel> viewModelsList = new List<NewsListViewModel>();
+
+            List<Restaurant> restaurants = _restaurantRepository.GetAll()
+                .Where(u => u.UserId == Convert.ToInt32(Session["UserId"])).ToList();
+
+            foreach (Restaurant restaurant in restaurants)
+            {
+                foreach (News news in _newsContext.GetAll().Where(r => r.RestaurantId == restaurant.RestaurantId))
+                {
+                    NewsListViewModel newsListViewModel = mapper.Map<NewsListViewModel>(news);
+                    newsListViewModel.RestaurantName = _restaurantRepository.Get(news.RestaurantId).RestaurantName;
+                    viewModelsList.Add(newsListViewModel);
+                }
+            }
+
+
+            return View(viewModelsList);
         }
     }
 }
