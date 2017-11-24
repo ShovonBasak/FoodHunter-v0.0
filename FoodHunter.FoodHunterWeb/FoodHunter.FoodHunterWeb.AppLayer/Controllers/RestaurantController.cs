@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using AutoMapper;
 using FoodHunter.FoodHunterWeb.AppLayer.Helpers;
+using FoodHunter.FoodHunterWeb.AppLayer.Helpers.Annotations;
 using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Base;
 using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details;
 using FoodHunter.Web.DataLayer;
@@ -85,7 +86,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
            
         }
 
-        [HttpGet]
+        [HttpGet, ValidateLogin]
         public ActionResult Details(int id)
         {
             Restaurant restaurant = _restaurantContext.Get(id);

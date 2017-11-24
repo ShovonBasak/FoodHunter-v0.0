@@ -48,7 +48,7 @@ namespace FoodHunter.Web.AppLayer.Controllers
             return RedirectToAction("Index", "Login");
         }
 
-    public ActionResult ProfileView()
+        public ActionResult ProfileView()
         {
             if (Session["UserId"] != null)
             {

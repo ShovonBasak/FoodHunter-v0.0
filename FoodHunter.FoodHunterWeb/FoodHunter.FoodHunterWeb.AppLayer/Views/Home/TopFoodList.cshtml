@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List.FoodListViewModel>
 
 @{
-    ViewBag.Title = "FoodList";
+    ViewBag.Title = "TopFoodList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,6 +13,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FoodPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rating)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FoodPicture)
@@ -27,6 +30,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FoodPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rating)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FoodPicture)

@@ -41,7 +41,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             //Copy values
             List<NewsListViewModel> viewModelsList = new List<NewsListViewModel>();
 
-                foreach (News news in _newsContext.GetAll())
+                foreach (News news in _newsContext.GetAll().OrderBy(news => news.PostedOn))
                 {
                     NewsListViewModel newsListViewModel = mapper.Map<NewsListViewModel>(news);
                     newsListViewModel.RestaurantName = _restaurantRepository.Get(news.RestaurantId).RestaurantName;
@@ -50,20 +50,6 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             
 
             return View(viewModelsList);
-        }
-
-        [HttpGet]
-        public ActionResult Details(int id)
-        {
-            News news = _newsContext.Get(id);
-
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Food, NewsDetailsViewModel>());
-            var mapper = config.CreateMapper();
-
-            //Copy values
-            NewsDetailsViewModel newsDetails = mapper.Map<NewsDetailsViewModel>(news);
-
-            return View(newsDetails);
         }
 
         [HttpGet]
@@ -83,11 +69,11 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
                 viewModelsList.Add(topRestaurant);
             }
 
-            return View(viewModelsList);
+            return View(viewModelsList.OrderByDescending(r => r.Rating));
         }
 
         [HttpGet]
-        public ActionResult FoodList()
+        public ActionResult TopFoodList()
         {
             //Create Map
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Food, FoodListViewModel>());
@@ -97,8 +83,9 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 
             foreach (Food food in _foodRepository.GetAll())
             {
-                FoodListViewModel foodListViewModel = mapper.Map<FoodListViewModel>(food);
-                viewModelsList.Add(foodListViewModel);
+                FoodListViewModel viewModelFood = mapper.Map<FoodListViewModel>(food);
+                viewModelFood.Rating = _facade.GetFoodRating(food.FoodId);
+                viewModelsList.Add(viewModelFood);
             }
             return View(viewModelsList);
         }
