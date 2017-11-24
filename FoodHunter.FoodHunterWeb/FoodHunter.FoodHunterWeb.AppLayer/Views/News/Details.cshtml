@@ -17,32 +17,33 @@
 
 <div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NewsPicture)
-        </dt>
+        <div class="container well block">
+            <div class="row">
+                <div class="col-md-3 image text-center">
+                    <h2> <img src="images/photo.jpg" alt="@Html.DisplayFor(model => model.NewsPicture)"></h2>
+                </div>
+                <div class="col-md-9">
+                    <table>
+                        <tr>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-9 no_pad">
+                                        <h2>@Html.DisplayFor(model => model.Title)</h2>
+                                    </div>
+                                    <div class="col-md-3 no_pad date">
+                                        <h4></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.NewsPicture)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NewsBody)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NewsBody)
-        </dd>
-
-    </dl>
+                        <tr>
+                            <p>@Html.DisplayFor(model => model.NewsBody)</p>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
 </div>
 <p>
     @Html.ActionLink("Back","Index","News")

@@ -217,7 +217,6 @@
     <Content Include="Views\Food\ShowList.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Home\NewsList.cshtml" />
-    <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\CheckIn\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
