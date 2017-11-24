@@ -45,6 +45,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
                 {
                     NewsListViewModel newsListViewModel = mapper.Map<NewsListViewModel>(news);
                     newsListViewModel.RestaurantName = _restaurantRepository.Get(news.RestaurantId).RestaurantName;
+                    newsListViewModel.NewsBody = newsListViewModel.NewsBody.Substring(0, 250);
                     viewModelsList.Add(newsListViewModel);
                 }
             

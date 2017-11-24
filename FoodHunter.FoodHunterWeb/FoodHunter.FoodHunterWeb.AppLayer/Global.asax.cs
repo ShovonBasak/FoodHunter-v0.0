@@ -21,5 +21,14 @@ namespace FoodHunter.Web.AppLayer
 
 
         }
+
+        protected void Session_Start()
+        {
+
+            Session["UserId"] = null;
+            Session["UserName"] = null;
+            Session["Email"] = null;
+            Session["UserType"] = "";
+        }
     }
 }
