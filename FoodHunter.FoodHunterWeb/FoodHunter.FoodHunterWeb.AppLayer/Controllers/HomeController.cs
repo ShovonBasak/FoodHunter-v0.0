@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using FoodHunter.FoodHunterWeb.AppLayer.Helpers;
+using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details;
 using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List;
 using FoodHunter.Web.AppLayer.ViewModels.List;
 using FoodHunter.Web.DataLayer;
@@ -22,18 +23,47 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         {
             _foodRepository = Factory.GetFoodRepository();
             _restaurantRepository = Factory.GetRestaurantRepository();
+            _newsContext = Factory.GetNewsRepository();
             _facade = new Facade();
         }
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("NewsList");
         }
 
         [HttpGet]
         public ActionResult NewsList()
         {
-            return View();
+             //Create Map
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<News,NewsListViewModel>());
+            var mapper = config.CreateMapper();
+            //Copy values
+            List<NewsListViewModel> viewModelsList = new List<NewsListViewModel>();
+
+                foreach (News news in _newsContext.GetAll())
+                {
+                    NewsListViewModel newsListViewModel = mapper.Map<NewsListViewModel>(news);
+                    newsListViewModel.RestaurantName = _restaurantRepository.Get(news.RestaurantId).RestaurantName;
+                    viewModelsList.Add(newsListViewModel);
+                }
+            
+
+            return View(viewModelsList);
+        }
+
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            News news = _newsContext.Get(id);
+
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Food, NewsDetailsViewModel>());
+            var mapper = config.CreateMapper();
+
+            //Copy values
+            NewsDetailsViewModel newsDetails = mapper.Map<NewsDetailsViewModel>(news);
+
+            return View(newsDetails);
         }
 
         [HttpGet]

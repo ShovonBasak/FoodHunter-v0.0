@@ -177,7 +177,6 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
-    <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\News\Create.cshtml" />
     <Content Include="Views\Registration\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
@@ -214,6 +213,9 @@
     <Content Include="Views\Home\NewArrivalList.cshtml" />
     <Content Include="Views\Foodie\ProfileView.cshtml" />
     <Content Include="Views\Food\ShowList.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\Home\NewsList.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

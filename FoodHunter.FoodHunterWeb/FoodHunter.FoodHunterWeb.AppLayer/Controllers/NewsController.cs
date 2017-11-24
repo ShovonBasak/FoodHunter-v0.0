@@ -83,6 +83,7 @@ namespace FoodHunter.Web.AppLayer.Controllers
 
             News news = mapper.Map<News>(newsCreateViewModel);
             news.UserId = Convert.ToInt32(Session["UserId"]);
+            news.RestaurantId = Convert.ToInt32(newsCreateViewModel.RestaurantId);
             news.PostedOn = DateTime.Now;
             _newsContext.Insert(news);
             return RedirectToAction("Index","News");

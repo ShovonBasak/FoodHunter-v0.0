@@ -9,7 +9,7 @@ namespace FoodHunter.Web.AppLayer.ViewModels.Create
     public class NewsCreateViewModel : NewsBaseViewModel
     {
         public List<Restaurant> Restaurants { get; set; }
-        public int RestaurantId { get; set; }
+        public string RestaurantId { get; set; }
         
     }
 }

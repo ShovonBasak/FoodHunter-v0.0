@@ -15,7 +15,7 @@ namespace FoodHunter.Web.DataLayer
         }
         public List<News> GetAll()
         {
-            return _context.Newses.ToList();
+            return _context.Newses.OrderBy(news=>news.PostedOn).ToList();
         }
 
         public News Get(int id)
