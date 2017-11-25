@@ -13,11 +13,13 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
     {
         private readonly IReviewRepository _reviewRepository;
         private readonly IFoodieRepository _foodieRepository;
+        private IUserRepository _userRepository;
 
         public ReviewController()
         {
             _reviewRepository = Factory.GetReviewRepository();
             _foodieRepository = Factory.GetFoodieRepository();
+            _userRepository = Factory.GetUserReposiroty();
         }
 
         // GET: Review
@@ -81,7 +83,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
                     ReviewListViewModel reviewListViewModel = mapper.Map<ReviewListViewModel>(review);
                     reviewListViewModels.Add(reviewListViewModel);
                     Foodie foodie = _foodieRepository.Get(reviewListViewModel.UserId);
-                    reviewListViewModel.UserName = foodie.FirstName + foodie.LastName;
+                    reviewListViewModel.UserName = _userRepository.Get(foodie.UserId).UserName;
                 }
 
             return PartialView(reviewListViewModels);

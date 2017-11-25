@@ -15,12 +15,14 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         private readonly ICheckInRepository _checkInContext;
         private readonly IFoodieRepository _foodieRepository;
         private readonly IRestaurantRepository _restaurantRepository;
+        private readonly IUserRepository _userRepository;
 
         public CheckInController()
         {
             _checkInContext = Factory.GetCheckInRepository();
             _foodieRepository = Factory.GetFoodieRepository();
             _restaurantRepository = Factory.GetRestaurantRepository();
+            _userRepository = Factory.GetUserReposiroty();
         }
         // GET: CheckIn
         public ActionResult Index()
@@ -60,7 +62,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             {
                 CheckInListViewModel checkInListViewModel = mapper.Map<CheckInListViewModel>(checkIn);
                 checkInListViewModel.UserName =
-                    _foodieRepository.Get(userId).FirstName + _foodieRepository.Get(userId).LastName;
+                    _userRepository.Get(checkIn.UserId).UserName;
                 checkInListViewModel.RestaurantName = _restaurantRepository.Get(checkIn.RestaurantId).RestaurantName;
 
                 viewModelCheckIns.Add(checkInListViewModel);
@@ -82,8 +84,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             foreach (CheckIn checkIn in checkIns)
             {
                 CheckInListViewModel checkInListViewModel = mapper.Map<CheckInListViewModel>(checkIn);
-                checkInListViewModel.UserName =
-                    _foodieRepository.Get(checkIn.UserId).FirstName + _foodieRepository.Get(checkIn.UserId).LastName;
+                checkInListViewModel.UserName = _userRepository.Get(checkIn.UserId).UserName;
                 checkInListViewModel.RestaurantName = _restaurantRepository.Get(restaurantId).RestaurantName;
 
                 viewModelCheckIns.Add(checkInListViewModel);
@@ -94,13 +95,6 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 
         [HttpGet]
         public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ActionName("Delete")]
-        public ActionResult DeleteCheckIn(int id)
         {
             return View();
         }

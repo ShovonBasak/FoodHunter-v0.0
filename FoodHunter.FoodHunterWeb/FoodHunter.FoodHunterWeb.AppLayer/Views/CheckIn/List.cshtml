@@ -1,4 +1,5 @@
-﻿@model IEnumerable<FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List.CheckInListViewModel>
+﻿@using FoodHunter.Web.DataLayer
+@model IEnumerable<FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List.CheckInListViewModel>
 
 @{
     Layout = null;
@@ -16,12 +17,19 @@
     
     @foreach (var item in Model) {
         <tr>
-             <td>
-                 @Html.ActionLink(Html.DisplayFor(modelItem => item.UserName).ToString(), "Details","Foodie") checked in at @Html.ActionLink(Html.DisplayFor(modelItem => item.RestaurantName).ToString(), "Details", "Foodie") at <b>@Html.DisplayFor(modelItem => item.CheckInTime)</b>
-            </td>
             <td>
-                @Html.ActionLink("Delete", "Delete", new { id=item.CheckInId })
+                @Html.ActionLink(item.UserName, "Details", "Foodie", new { @id = item.UserId }, null) checked in at @Html.ActionLink(item.RestaurantName, "Details", "Restaurant", new {@id=item.RestaurantId}, null) at <b>@item.CheckInTime</b>
             </td>
+            
+            @if (Session["UserId"] != null && Session["UserType"].ToString() == UserType.Foodie.ToString())
+            {
+                if (item.UserId.ToString() == Session["UserId"].ToString())
+                {
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new {id = item.CheckInId})
+                    </td>
+                }
+            }
         </tr>
     }
     

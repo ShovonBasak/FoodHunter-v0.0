@@ -61,9 +61,6 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit")
-</p>
 
 @{
     Html.RenderAction("ListByUser", "CheckIn", new {userId = Url.RequestContext.RouteData.Values["id"], @controller = Url.RequestContext.RouteData.Values["controller"]});

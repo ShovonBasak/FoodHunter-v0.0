@@ -12,61 +12,66 @@
     <meta name="viewport" content="width=device-width" />
 </head>
 <body>
-    <div>
-        <h4>Welcome Restaurant Admin</h4>
-        <h4>@Html.ActionLink("Check In","Create","CheckIn", new{@restaurantId = Url.RequestContext.RouteData.Values["id"]})</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.RestaurantBase.RestaurantName)
-            </dt>
+<div>
+     <hr/>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RestaurantBase.RestaurantName)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.RestaurantBase.RestaurantName)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.RestaurantBase.CoverPicture)
-            </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RestaurantBase.RestaurantName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RestaurantBase.CoverPicture)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.RestaurantBase.CoverPicture)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.RestaurantBase.Location)
-            </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RestaurantBase.CoverPicture)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RestaurantBase.Location)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.RestaurantBase.Location)
-            </dd>
-            <dt>
-                Restaurant Admin
-            </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RestaurantBase.Location)
+        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.ProfileDetails.FirstName)
-                @(" ")
-                @Html.DisplayFor(model => model.ProfileDetails.LastName)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.ProfileDetails.PhoneNo)
-            </dt>
+        <dt>
+            Restaurant Admin
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProfileDetails.FirstName)
+            @(" ")
+            @Html.DisplayFor(model => model.ProfileDetails.LastName)
+        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.ProfileDetails.PhoneNo)
-            </dd>
-        </dl>
-        
-        
-    </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.RestaurantBase.RestaurantId  }) 
-    </p>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfileDetails.PhoneNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfileDetails.PhoneNo)
+        </dd>
+    </dl>
+
+
+</div>
+    @if (Session["UserId"] != null && Session["UserType"].ToString() == UserType.RestaurantAdmin.ToString())
+    {
+        <p>
+            @Html.ActionLink("Edit", "Edit", new {id = Model.RestaurantBase.RestaurantId})
+        </p>
+    }
     
 <h2>Food Menu</h2>
 @{
     Html.RenderAction("List", "Food", new { @id = Url.RequestContext.RouteData.Values["id"] });
 }
-<h2>CheckIns</h2>
+<table class="table">
+    <td><h2>CheckIns</h2></td>
+    <td><h2>@Html.ActionLink("Check In Now!", "Create", "CheckIn", new {@restaurantId = Url.RequestContext.RouteData.Values["id"]}, null)</h2></td>
+</table>
 @{
     Html.RenderAction("ListByRestaurant", "CheckIn", new { restaurantId = Url.RequestContext.RouteData.Values["id"] });
 

@@ -12,7 +12,7 @@ namespace FoodHunter.Web.DataLayer
         [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ReviewId { get; set; }
         public string Comment { get; set; }
-        public string FoodPicture { get; set; }
+        public string ReviewPicture { get; set; }
         [Range(1,10)]
         public int Rating { get; set; }
         public int UserId { get; set; }

@@ -51,9 +51,12 @@
     </dd>
 
 </dl>
-<p>
-    @Html.ActionLink("Edit", "Edit", new {  @id = Url.RequestContext.RouteData.Values["id"] })
-</p>
+@if (Session["UserId"] != null && Session["UserType"].ToString() == UserType.RestaurantAdmin.ToString())
+{
+    <p>
+        @Html.ActionLink("Edit", "Edit", new {@id = Url.RequestContext.RouteData.Values["id"]})
+    </p>
+}
 
 @{
     Html.RenderAction("List","Review", new { @id = Url.RequestContext.RouteData.Values["id"], @controller = Url.RequestContext.RouteData.Values["controller"] });
